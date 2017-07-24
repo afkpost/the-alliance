@@ -1,0 +1,13 @@
+.lobby {
+    position: fixed;
+    background: rgba(0,0,0,0.8);
+    padding-top: 100px;
+    left: 0; right: 0; top: 0; bottom: 0;
+    color: white;
+}
+
+.lobby h1 {
+    text-align: center;
+    font-size: 3em;
+    text-transform: uppercase;
+}

@@ -1,0 +1,45 @@
+.screen-player>td {
+    height: 1em;
+    width: 1em;
+    box-sizing: border-box;
+    background-size: 1em;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.screen .players tbody th {
+    text-align: left;
+    padding: 0 10px;
+}
+
+.screen-player .ready {
+    background-image: url('/resources/icons/thumb-up.svg');
+}
+.screen-player .leader {
+    background-image: url('/resources/icons/leader.svg');
+}
+
+.screen-player .on-team {
+    background-image: url('/resources/icons/gun.svg');
+    background-color:  hsl(190, 100%, 10%);
+    width: 2em;
+    border-radius: 0.2em;
+}
+
+.screen-player .player-vote {
+    background-color: hsl(190, 100%, 10%);
+    width: 2em;
+    border-radius: 0.2em;
+}
+
+.screen-player .player-vote.accept {
+    background-image: url('/resources/icons/thumb-up.svg');
+}
+
+.screen-player .player-vote.decline {
+    background-image: url('/resources/icons/thumb-down.svg');
+}
+
+table.players {
+    border-collapse:separate; 
+}

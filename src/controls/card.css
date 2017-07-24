@@ -1,0 +1,25 @@
+.card.vertical {
+    width: 42vh;
+    height: 24vh;
+}
+
+.card.vertical {
+    width: 24vh;
+    height: 42vh;
+}
+
+.card {
+    border-radius: 3vh;
+    display: inline-block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.card.light {
+    background-color:  hsl(190, 10%, 60%);
+}
+
+.card.dark {
+    background-color: hsl(190, 100%, 10%);
+}

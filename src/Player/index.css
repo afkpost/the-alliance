@@ -1,0 +1,198 @@
+.player {
+    position: fixed;
+    display: flex;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    text-align: center;
+}
+
+.player section {
+    width: 100%;
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+}
+
+.player section.game-state {
+    padding-bottom: 50px;
+}
+
+.player .on-team {
+    height: 16vh;
+    width: 30vh;
+    margin: auto;
+    background-color: hsl(190, 100%, 10%);
+    background-image: url("/resources/icons/gun.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 2vh;
+}
+
+.player .team {
+    position: absolute;
+    text-align: center;
+    left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    margin: 0;
+    padding: 0 25% 25px;
+    transition: 300ms ease-in-out transform;
+    transform: translateY(0%);
+    cursor: pointer;
+}
+
+.player .team > .toogle:before {
+    height: 50px;
+    content: '';
+    background: url('/resources/icons/up.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: fixed;
+    left: 0; right: 0; bottom: 100%;
+    transition: 300ms ease-in-out transform;
+    transform: rotateZ(180deg);
+}
+
+.player .team.hidden > .toogle:before {
+    transform: rotateZ(0deg);
+}
+
+.player .team.hidden {
+    transform: translateY(100%);
+}
+
+.player .team li {
+    list-style: none;
+}
+
+.player .team ul {
+    padding: 0;
+    margin: 0;
+}
+
+.player .leader h2 {
+    text-align: center;
+}
+
+.player .leader ul {
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+    text-align: center;
+}
+
+.player .leader li {
+    list-style: none;
+    display: inline-block;
+    border: 1px solid hsl(70, 100%, 75%);
+    color: hsl(70, 100%, 75%);
+    width: 70px;
+    font-size: 0.8em;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 5px;
+    margin: 10px;
+    text-align: center;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.player .leader li.selected {
+    border-color: hsl(190, 100%, 50%);
+    color: hsl(190, 100%, 50%);
+}
+
+.player .leader li.me:after {
+    content: ' (me)';
+}
+
+section>header {
+    position: fixed;
+    text-align: center;
+    background: rgba(0,0,0,0.2);
+    border: 2px solid white;
+    padding: 5px 10px;
+    left: 0; right: 0; top: 0;
+    margin: 10px auto;
+    width: 300px;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+section > footer {
+    background: rgba(0,0,0,0.5);
+    font-size: 1.2em;
+    font-style: italic;
+    text-align: center;
+    padding: 8px 0;
+    margin-top: 50px;
+}
+
+section > div {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+footer:not(:empty):after {
+    content: '...';
+}
+
+.player .team-vote {
+    text-align: center;
+    margin: 8vh 0;
+}
+
+.player .vote {
+    display: inline-block;
+    height: 28vh;
+    width: 16vh;
+    margin: auto;
+    background-color:  hsl(190, 10%, 60%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 2vh;
+    margin: 2vh;
+}
+
+.player .vote.accept {
+    background-image: url('/resources/icons/thumb-up.svg');
+}
+
+.player .vote.reject {
+    background-image: url('/resources/icons/thumb-down.svg');
+}
+
+.player .mission {
+    display: inline-block;
+    height: 18vh;
+    width: 36vh;
+    margin: auto;
+    background-color:  hsl(190, 100%, 10%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 2vh;
+    border: 0.5vh solid hsl(70, 100%, 75%);;
+    margin: 2vh;
+    cursor: pointer;
+}
+.player .mission.disabled {
+    opacity: 0.7;
+}
+
+.player .mission:hover {
+    border-color:  hsl(190, 100%, 50%);
+}
+
+.player .mission.success {
+    background-image: url('/resources/icons/thumb-up.svg');
+}
+
+.player .mission.fail {
+    background-image: url('/resources/icons/thumb-down.svg');
+}
