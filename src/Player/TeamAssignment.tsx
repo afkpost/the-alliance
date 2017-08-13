@@ -3,8 +3,8 @@ import Dictionary from '../lib/Dictionary';
 import { SetPlayerOnTeam, ConfirmTeam } from './actions';
 import dispatcher from '../lib/dispatcher';
 import { Player, GamePhase } from '../types';
-import If from '../controls/If';
 import * as cx from 'classnames';
+import Hidable from '../controls/Hidable';
 
 type Props = {
     pin: string,
@@ -17,7 +17,7 @@ type Props = {
 };
 
 export default ({ pin, uid, players, leader, currentTeam, missionSize, phase }: Props) => (
-    <If condition={leader === uid && phase === 'TEAM_ASSIGNMENT'} className="leader">
+    <Hidable hidden={leader !== uid || phase !== 'TEAM_ASSIGNMENT'} className="leader">
         <h2>Choose your team of {missionSize} players</h2>
         <ul>{
             Dictionary.values(players, x => x.name.toLowerCase()).map(player => 
@@ -40,5 +40,5 @@ export default ({ pin, uid, players, leader, currentTeam, missionSize, phase }: 
         >
             Confirm team
         </button>
-    </If>
+    </Hidable>
 );

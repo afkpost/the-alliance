@@ -8,9 +8,11 @@ import VoteTrack from './VoteTrack';
 import Players from './Players';
 import RoomCode from './RoomCode';
 import './index.css';
+import './screen.css';
 import Dictionary from '../lib/Dictionary';
-import If from '../controls/If';
 import MissionReport from './MissionReport';
+import Hidable from '../controls/Hidable';
+// import Sound from 'react-sound';
 
 type Props = RouteComponentProps<{pin: string}>;
 type State = {
@@ -51,9 +53,10 @@ export default class Screen extends React.Component<Props, State> {
 
         return (
             <div className="screen">
+                {/* <Sound url="/resources/sounds/background.mp3" playStatus={Sound.status.PLAYING}/> */}
                 <section>
                     <h1>The Resistance</h1>
-                    <If condition={!!game.state}>
+                    <Hidable hidden={!game.state}>
                         <div>
                             <Missions 
                                 missions={game.state && game.state.missions || []} 
@@ -61,31 +64,42 @@ export default class Screen extends React.Component<Props, State> {
                             />
                             <VoteTrack voteTrack={game.state && game.state.voteTrack || 0}/>
                         </div>
-                    </If>
+                    </Hidable>
                 </section>
                 <aside>
                     <Players 
                         players={Dictionary.values(game.players, x => x.name.toLocaleLowerCase())} 
                         state={game.state}
                     />
+                    {
+                        game.state && 
+                            <div className="team-setup">
+                                <span className="number-of-players">
+                                    {game.state.order.length}
+                                </span>
+                                <span className="number-of-spies">
+                                    {Dictionary.length(game.state.spies)}
+                                </span>
+                            </div>
+                    }
                 </aside>
-                <If condition={!!game.state && game.state.phase === 'MISSION_REPORT'}>
+                <Hidable hidden={!game.state || game.state.phase !== 'MISSION_REPORT'}>
                     <MissionReport effort={game.state && Dictionary.values(game.state.votes) || []}/>
-                </If>
+                </Hidable>
                 <RoomCode pin={this.props.match.params.pin}/>
-                <If 
+                <Hidable 
                     className="winner"
-                    condition=
+                    hidden=
                         {
-                            !!game.state && 
-                            (game.state.phase === 'SPIES_WIN' || game.state.phase === 'RESISTANCE_WINS')
+                            !game.state ||
+                            (game.state.phase !== 'SPIES_WIN' && game.state.phase !== 'RESISTANCE_WINS')
                         }
                 >
                     <h1>
                         {game.state && game.state.phase === 'SPIES_WIN' ? 'THE SPIES ' : 'THE RESISTANCE '}
                         HAVE WON
                     </h1>
-                </If>
+                </Hidable>
             </div>
         );
     }

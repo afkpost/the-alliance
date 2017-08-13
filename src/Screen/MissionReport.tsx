@@ -1,21 +1,18 @@
 import * as React from 'react';
-import * as cx from 'classnames';
+import Card from '../controls/Card';
+const shuffle: <T>(arr: T[]) => T[] = require('array-shuffle');
 
 type Props = {
     effort: boolean[]
 };
 
 type State = {
-    position: number
+    position: number,
+    effort: boolean[]
 };
 
 export default class MissionReport extends React.Component<Props, State> {
-    constructor() {
-        super();
-        this.state = {
-            position: 0
-        };
-    }
+    private timer?: number;
 
     componentWillMount() {
         this.componentWillReceiveProps(this.props);
@@ -23,30 +20,41 @@ export default class MissionReport extends React.Component<Props, State> {
 
     componentWillReceiveProps(newProps: Props) {
         this.setState({
-            position: 0
+            position: 0,
+            effort: shuffle(newProps.effort)
         });
-
-        const timer = setInterval(
+        this.clearTimer();
+        this.timer = setInterval(
             () => {
                 const position = this.state.position + 1;
                 this.setState({ position });
                 if (position === this.props.effort.length) {
-                    clearInterval(timer);
+                    this.clearTimer();
                 }
             },
-            1000);
+            1500) as {} as number;
+    }
+
+    clearTimer() {
+        if (this.timer) {
+            clearInterval(this.timer);
+            this.timer = undefined;
+        }
     }
 
     render() {
-        const { effort } = this.props;
-        const { position } = this.state;
+        const { position, effort } = this.state;
 
         return (
             <div className="mission-report">
                 <h1>Mission report</h1>
             {
                 effort.map((success, i) => (
-                    <div className={cx('mission-effort', { flipped: i < position, success })}/>
+                    <Card
+                        icon={success ? 'success' : 'fail'}
+                        orientation="horizontal"
+                        flipped={i >= position}
+                    />
                 ))
             }
             </div>

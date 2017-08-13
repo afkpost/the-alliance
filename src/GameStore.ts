@@ -7,10 +7,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import Dictionary from './lib/Dictionary';
 import { Game, Player, GameState, GamePhase } from './types';
 import setupMatrix from './setupMatrix';
-
-function randomSort() {
-    return Math.random() - 0.5;
-}
+const shuffle: <T>(arr: T[]) => T[] = require('array-shuffle');
 
 const digits = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 function generatePin(): string {
@@ -47,11 +44,16 @@ class GameStore {
 
         dispatcher.on(LobbyActions.JoinGame, ({ pin, name }) => {
             const uid = this.uid;
-            this.store
-                .save<Player>(`${pin}/players/${uid}`, { uid, name, ready: false })
-                .then(() => {
-                    this.history.push(`/${pin}/player`);
-                });
+            this.store.get<Game>(pin).then(game => {
+                if (game === null) {
+                    alert(`Game ${pin} not found`);
+                } else {
+                    this.store
+                        .save<Player>(`${pin}/players/${uid}`, { uid, name, ready: false })
+                        .then(() => {
+                            this.history.push(`/${pin}/player`);
+                        });
+                }});
         });
 
         dispatcher.on(PlayerActions.SetPlayerReadyState, ({ pin, ready }) =>
@@ -72,8 +74,8 @@ class GameStore {
                         
                         const setup = setupMatrix[numberOfPlayers];
                         const playerIds = players.map(x => x.uid);
-                        const spies = Dictionary.toDictionary(playerIds.sort(randomSort).slice(0, setup.spies), x => x);
-                        const order = playerIds.sort(randomSort);
+                        const spies = Dictionary.toDictionary(shuffle(playerIds).slice(0, setup.spies), x => x);
+                        const order = shuffle(playerIds);
 
                         this.store.save<GameState>(`${pin}/state`, {
                             phase: 'TEAM_ASSIGNMENT',
@@ -104,77 +106,65 @@ class GameStore {
         });
 
         dispatcher.on(PlayerActions.Vote, ({ pin, playerId, accept }) => {
-            let doCount = false;
             this.store.update<GameState>(`${pin}/state`, state => {
-                doCount = false;
                 state.votes = state.votes || {};
                 state.votes[playerId] = accept;
 
                 if (Dictionary.length(state.votes) === state.order.length) {
                     state.phase = 'VOTE_COUNTING';
-                    doCount = true;
-                }
-            }).then(() => {
-                if (doCount) {
-                    setTimeout(
-                        () => 
-                            this.store.update<GameState>(`${pin}/state`, state => {
-                                if (Dictionary.values(state.votes).filter(x => x).length > state.order.length / 2) {
-                                    state.votes = {};
-                                    state.phase = 'ON_MISSION';
-                                    state.voteTrack = 0;
-                                } else {
-                                    if (++state.voteTrack > 4) {
-                                        state.phase = 'SPIES_WIN';
-                                    } else {
-                                        state.round++;
-                                        state.votes = {};
-                                        state.phase = 'TEAM_ASSIGNMENT';
-                                        state.currentTeam = [];
-                                    }
-                                }
-                            }),
-                        15000);
                 }
             });
         });
 
+        dispatcher.on(PlayerActions.Continue, ({pin, currentPhase}) => {
+            if (currentPhase === 'VOTE_COUNTING') {
+                this.store.update<GameState>(`${pin}/state`, state => {
+                    if (Dictionary.values(state.votes).filter(x => x).length > state.order.length / 2) {
+                        state.votes = {};
+                        state.phase = 'ON_MISSION';
+                        state.voteTrack = 0;
+                    } else {
+                        if (++state.voteTrack > 4) {
+                            state.phase = 'SPIES_WIN';
+                        } else {
+                            state.round++;
+                            state.votes = {};
+                            state.phase = 'TEAM_ASSIGNMENT';
+                            state.currentTeam = [];
+                        }
+                    }
+                });
+            }
+            if (currentPhase === 'MISSION_REPORT') {
+                this.store.update<GameState>(`${pin}/state`, state => {
+                    const missions = state.missions;
+                    const currentMission = missions[state.currentMission];
+                    currentMission.failed = 
+                        Dictionary.values(state.votes).filter(x => !x).length >=
+                        currentMission.failuresNeededToFail;
+
+                    state.votes = {};
+
+                    if (missions.filter(x => x.failed === currentMission.failed).length >
+                        missions.length / 2) {
+                        state.phase = currentMission.failed ? 'SPIES_WIN' : 'RESISTANCE_WINS';
+                    } else {
+                        state.currentTeam = [];
+                        state.phase = 'TEAM_ASSIGNMENT';
+                        state.round++;
+                        state.currentMission++;
+                    }
+                });
+            }
+        });
+
         dispatcher.on(PlayerActions.MissionVote, ({ pin, playerId, success}) => {
-            let doCount = false;
             this.store.update<GameState>(`${pin}/state`, state => {
-                doCount = false;
                 state.votes = state.votes || {};
                 state.votes[playerId] = success;
 
                 if (Dictionary.length(state.votes) === (state.currentTeam || []).length) {
                     state.phase = 'MISSION_REPORT';
-                    doCount = true;
-                }
-            }).then(() => {
-                if (doCount) {
-                    setTimeout(
-                        () => {
-                            this.store.update<GameState>(`${pin}/state`, state => {
-                                const missions = state.missions;
-                                const currentMission = missions[state.currentMission];
-                                currentMission.failed = 
-                                    Dictionary.values(state.votes).filter(x => !x).length >=
-                                    currentMission.failuresNeededToFail;
-
-                                state.votes = {};
-
-                                if (missions.filter(x => x.failed === currentMission.failed).length >
-                                    missions.length / 2) {
-                                    state.phase = currentMission.failed ? 'SPIES_WIN' : 'RESISTANCE_WINS';
-                                } else {
-                                    state.currentTeam = [];
-                                    state.phase = 'TEAM_ASSIGNMENT';
-                                    state.round++;
-                                    state.currentMission++;
-                                }
-                            });
-                        },
-                        15000);
                 }
             });
         });

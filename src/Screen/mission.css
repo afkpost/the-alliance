@@ -1,0 +1,62 @@
+.mission {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    height: 90px;
+    border: 5px solid white;
+    margin: 10px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 100%;
+}
+
+@keyframes border-pulsate {
+    0%   { border-color: hsl(70, 100%, 75%); }
+    40%  { border-color: hsl(70, 100%, 95%); }
+    60%  { border-color: hsl(70, 100%, 95%); }
+    100% { border-color: hsl(70, 100%, 75%); }
+}
+
+.mission.current-mission {
+    animation: border-pulsate 2s infinite;
+}
+
+.mission.succeed {
+    border-color: hsl(190, 100%, 50%);
+    background: hsla(190, 100%, 50%, 0.5);
+    color: rgba(255,255,255,0.3);
+}
+
+.mission.failed {
+    border-color: hsl(350, 100%, 50%);
+    background: hsla(350, 100%, 50%, 0.5);
+    color: rgba(255,255,255,0.3);
+}
+
+.mission-number {
+    font-size: 0.8em;
+}
+
+.mission-number:before {
+    content: 'Mission '
+}
+
+.mission-team-size {
+    font-size: 4em;
+    margin: auto;
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    line-height: 1em;
+    height: 1em;
+}
+
+.mission-failures-needed {
+    position: absolute;
+    font-size: 2em;
+    font-weight: bold;
+    left: 0; right: 0; top: 100%;
+    padding: 10px 0;
+}
+.mission-failures-needed:after {
+    content: ' fails needed';
+}

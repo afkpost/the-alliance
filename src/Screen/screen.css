@@ -1,0 +1,18 @@
+.team-setup {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: white;
+    font-size: 1.4em;
+    font-weight: bold;
+    text-align: right;
+}
+
+.team-setup .number-of-players:after {
+    content: " players / "
+}
+
+.team-setup .number-of-spies:after {
+    content: " spies"
+}

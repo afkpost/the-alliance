@@ -159,14 +159,6 @@ footer:not(:empty):after {
     margin: 2vh;
 }
 
-.player .vote.accept {
-    background-image: url('/resources/icons/thumb-up.svg');
-}
-
-.player .vote.reject {
-    background-image: url('/resources/icons/thumb-down.svg');
-}
-
 .player .mission {
     display: inline-block;
     height: 18vh;
@@ -187,12 +179,4 @@ footer:not(:empty):after {
 
 .player .mission:hover {
     border-color:  hsl(190, 100%, 50%);
-}
-
-.player .mission.success {
-    background-image: url('/resources/icons/thumb-up.svg');
-}
-
-.player .mission.fail {
-    background-image: url('/resources/icons/thumb-down.svg');
 }

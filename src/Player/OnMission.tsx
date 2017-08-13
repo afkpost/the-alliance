@@ -1,9 +1,9 @@
 import * as React from 'react';
-import If from '../controls/If';
 import dispatcher from '../lib/dispatcher';
 import { MissionVote } from './actions';
-import * as cx from 'classnames';
 import { GamePhase } from '../types';
+import Card from '../controls/Card';
+import Hidable from '../controls/Hidable';
 
 type SharedProps = {
     pin: string,
@@ -16,17 +16,22 @@ type Props = SharedProps & {
     phase: GamePhase
 };
 
-const Success = ({pin, uid}: SharedProps) => 
-    <div className="mission success" onClick={() => dispatcher.execute(new MissionVote(pin, uid, true))}/>;
+const Success = ({pin, uid}: SharedProps) => (
+    <Card 
+        icon="success"
+        orientation="horizontal"
+        size="s"
+        onClick={() => dispatcher.execute(new MissionVote(pin, uid, true))}
+    />
+);
+
 const Fail = ({ pin, uid, disabled}: {disabled: boolean} & SharedProps) => (
-    <div
-        className={cx('mission fail', { disabled })}
-        onClick={() => {
-            if (disabled) {
-                return;
-            }
-            dispatcher.execute(new MissionVote(pin, uid, false));
-        }}
+    <Card 
+        icon="fail"
+        orientation="horizontal"
+        size="s"
+        disabled={disabled}
+        onClick={() => dispatcher.execute(new MissionVote(pin, uid, false))}
     />
 );
 
@@ -59,13 +64,13 @@ class Votes extends React.Component<{spy: boolean} & SharedProps, {reverse: bool
 }
 
 export default ({pin, uid, phase, onMission, spy}: Props) => (
-    <If condition={phase === 'ON_MISSION'}>
-        <If condition={!onMission}>
+    <Hidable hidden={phase !== 'ON_MISSION'}>
+        <Hidable hidden={onMission}>
             <h1>Waiting for mission to complete</h1>
-        </If>
-        <If condition={onMission}>
+        </Hidable>
+        <Hidable hidden={!onMission}>
             <h2>Please choose</h2>
             <Votes spy={spy} pin={pin} uid={uid}/>
-        </If>
-    </If>
+        </Hidable>
+    </Hidable>
 );

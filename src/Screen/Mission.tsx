@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Mission } from '../types';
 import * as cx from 'classnames';
+import './mission.css';
+import { asString } from '../lib/format';
 
 type Props = {
     missionNumber: number,
@@ -8,16 +10,20 @@ type Props = {
     mission: Mission
 };
 
-export default (props: Props) => (
+export default ({missionNumber, currentMission, mission}: Props) => (
     <div
         className={
             cx('mission', {
-                'current-mission': props.currentMission,
-                failed: props.mission.failed === true,
-                succeed: props.mission.failed === false
+                'current-mission': currentMission,
+                failed: mission.failed === true,
+                succeed: mission.failed === false
             })}
     >
-        <div className="mission-number">{props.missionNumber}</div>
-        <div className="mission-team-size">{props.mission.teamSize}</div>
+        <div className="mission-number">{missionNumber}</div>
+        <div className="mission-team-size">{mission.teamSize}</div>
+        { 
+            mission.failuresNeededToFail > 1 && 
+            <div className="mission-failures-needed">{asString(mission.failuresNeededToFail)}</div>
+        }
     </div>
 );

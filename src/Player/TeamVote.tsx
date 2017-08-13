@@ -1,9 +1,9 @@
 import * as React from 'react';
-import If from '../controls/If';
 import { GamePhase } from '../types';
 import { Vote } from './actions';
 import dispatcher from '../lib/dispatcher';
 import Card from '../controls/Card';
+import Hidable from '../controls/Hidable';
 
 type Props = {
     pin: string,
@@ -13,22 +13,25 @@ type Props = {
 };
 
 export default ({pin, uid, phase, accepted}: Props) => (
-    <If condition={phase === 'TEAM_VOTE'} className="team-vote">
-        <If condition={accepted === undefined}>
-            <h1>Please vote</h1>
-        </If>
+    <Hidable hidden={phase !== 'TEAM_VOTE'} className="team-vote">
+        <h1 hidden={accepted !== undefined}>Please vote</h1>
         <Card 
             icon="approve" 
-            size="l" 
+            size="s" 
             orientation="vertical" 
-            color="light" 
+            color="light"
             onClick={() => dispatcher.execute(new Vote(pin, uid, true))}
+            disabled={accepted !== undefined}
+            hidden={accepted === false}
         />
-        <If 
-            condition={accepted !== true} 
+        <Card 
+            icon="reject" 
+            size="s" 
+            orientation="vertical" 
+            color="light"
             onClick={() => dispatcher.execute(new Vote(pin, uid, false))}
-        >
-            <Card icon="reject" size="l" orientation="vertical" color="dark"/>
-        </If>
-    </If>
+            disabled={accepted !== undefined}
+            hidden={accepted === true}
+        />
+    </Hidable>
 );

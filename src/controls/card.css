@@ -1,5 +1,22 @@
-.card.vertical {
+.card.horizontal {
+    width: 31.5vh;
+}
+
+.card.horizontal svg {
+    height: 18vh;
+}
+
+.card.horizontal.s {
+    width: 21vh;
+}
+.card.horizontal.s svg {
+    height: 12vh;
+}
+
+.card.horizontal.l {
     width: 42vh;
+}
+.card.horizontal.l svg {
     height: 24vh;
 }
 
@@ -8,18 +25,58 @@
     height: 42vh;
 }
 
+.card.vertical.s {
+    width: 18vh;
+    height: 31.5vh;
+}
+
 .card {
     border-radius: 3vh;
-    display: inline-block;
+    display: inline-table;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    margin: 2vh;
+    transition: 0.5s ease transform;
+    transform: perspective(100px);
+}
+
+.card.hidden {
+    display: none;
+}
+
+.card.clickable {
+    cursor: pointer;
+}
+.card.clickable.disabled {
+    cursor: not-allowed;
+}
+
+.card.disabled {
+    opacity: 0.7;
+}
+
+.card.flipped {
+    transform: perspective(100px) translate3d(0, 100vh, 90px);
+}
+
+.card .inner-card {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .card.light {
-    background-color:  hsl(190, 10%, 60%);
+    background-color:  hsl(190, 10%, 70%);
+}
+
+.card.light svg {
+    fill: hsl(190, 10%, 40%);
 }
 
 .card.dark {
     background-color: hsl(190, 100%, 10%);
+}
+
+.card.dark svg {
+    fill: hsl(190, 20%, 90%);
 }

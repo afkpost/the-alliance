@@ -1,11 +1,15 @@
 import * as React from 'react';
 import Dictionary from '../lib/Dictionary';
 import { Player, GamePhase } from '../types';
-import If from '../controls/If';
 import * as cx from 'classnames';
 import TeamAssignment from './TeamAssignment';
 import TeamVote from './TeamVote';
 import OnMission from './OnMission';
+import Card from '../controls/Card';
+import Continue from '../controls/Continue';
+import dispatcher from '../lib/dispatcher';
+import { Continue as ContinueAction } from './actions';
+import Hidable from '../controls/Hidable';
 
 type Props = {
     pin: string,
@@ -35,9 +39,15 @@ export default class extends React.Component<Props, State> {
         const { pin, spies, uid, players, leader, currentTeam, missionSize, phase, votes } = this.props;
         const { showTeam } = this.state;
         const isSpy = !!spies[uid];
+        const gameOver = phase === 'SPIES_WIN' || phase === 'RESISTANCE_WINS';
+        const won = phase === 'SPIES_WIN' && isSpy || phase === 'RESISTANCE_WINS' && !isSpy;
         return (
             <section className="game-state">
-                <If condition={currentTeam.indexOf(uid) !== -1} className="on-team"/>
+                <Card 
+                    hidden={currentTeam.indexOf(uid) === -1}
+                    icon="gun"
+                    orientation="horizontal"
+                />
                 <TeamVote
                     pin={pin}
                     uid={uid}
@@ -60,16 +70,21 @@ export default class extends React.Component<Props, State> {
                     onMission={currentTeam.indexOf(uid) !== -1 && votes[uid] === undefined}
                     spy={!!spies[uid]}
                 />
-                <If condition={phase === 'SPIES_WIN' && !!spies[uid] || phase === 'RESISTANCE_WINS' && !spies[uid]}>
+                <Hidable hidden={phase !== 'VOTE_COUNTING' && phase !== 'MISSION_REPORT'}>
+                    <Continue onClick={() => dispatcher.execute(new ContinueAction(pin, phase))} lockedFor={5}>
+                        Continue
+                    </Continue>
+                </Hidable>
+                <Hidable hidden={!(gameOver && won)}>
                     <h1>You win</h1>
-                </If>
-                <If condition={phase === 'SPIES_WIN' && !spies[uid] || phase === 'RESISTANCE_WINS' && !!spies[uid]}>
+                </Hidable>
+                <Hidable hidden={!(gameOver && !won)}>
                     <h1>You lose</h1>
-                </If>
+                </Hidable>
                 <div className={cx('team', {hidden: !showTeam})} onClick={() => this.setState({ showTeam: !showTeam})}>
                     <div className="toogle"/>
                     <h2>You are a {isSpy ? ' SPY' : ' RESISTANCE MEMBER'}</h2>
-                    <If className="team-members" condition={isSpy}>
+                    <Hidable className="team-members" hidden={!isSpy}>
                         <h3>Other spies</h3>
                         <ul>
                         {
@@ -77,7 +92,7 @@ export default class extends React.Component<Props, State> {
                                 .map(id => <li key={id}>{players[id].name}</li>)
                         }
                         </ul>
-                    </If>
+                    </Hidable>
                 </div>
             </section>
         );
