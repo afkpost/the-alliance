@@ -7,6 +7,8 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import Dictionary from './lib/Dictionary';
 import { Game, Player, GameState, GamePhase } from './types';
 import setupMatrix from './setupMatrix';
+import * as firebaseConfiguration from './firebase.config.json';
+console.log(firebaseConfiguration);
 const shuffle: <T>(arr: T[]) => T[] = require('array-shuffle');
 
 const digits = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -24,14 +26,7 @@ class GameStore {
     private uid: string;
 
     constructor() {
-        const store = this.store = new FirebaseStore({
-            apiKey: 'AIzaSyCNWnnDdjLVS1LvhD0pptL7CEknrzp8xio',
-            authDomain: 'resistance-280d6.firebaseapp.com',
-            databaseURL: 'https://resistance-280d6.firebaseio.com',
-            projectId: 'resistance-280d6',
-            storageBucket: 'resistance-280d6.appspot.com',
-            messagingSenderId: '953411397836'
-        });
+        const store = this.store = new FirebaseStore(firebaseConfiguration);
 
         dispatcher.on(LobbyActions.NewGame, action => {
             const pin = generatePin();
