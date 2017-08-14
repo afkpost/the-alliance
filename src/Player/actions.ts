@@ -1,4 +1,4 @@
-import { GamePhase } from '../types';
+import { GamePhase } from 'types';
 
 export class SetPlayerReadyState {
     constructor(public pin: string, public ready: boolean) {}

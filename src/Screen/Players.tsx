@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Player as Model, GameState } from '../types';
+import { Player as Model, GameState } from 'types';
 import Player from './Player';
 
 type Props = {

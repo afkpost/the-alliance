@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as cx from 'classnames';
-import { GamePhase } from '../types';
+import { GamePhase } from 'types';
 import './player.css';
 
 type Props = {

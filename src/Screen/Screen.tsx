@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
-import gameStore from '../GameStore';
-import { Game } from '../types';
+import gameStore from 'GameStore';
+import { Game } from 'types';
 import * as Rx from 'rxjs';
 import Missions from './Missions';
 import VoteTrack from './VoteTrack';
@@ -9,9 +9,9 @@ import Players from './Players';
 import RoomCode from './RoomCode';
 import './index.css';
 import './screen.css';
-import Dictionary from '../lib/Dictionary';
+import Dictionary from 'lib/Dictionary';
 import MissionReport from './MissionReport';
-import Hidable from '../controls/Hidable';
+import Hidable from 'controls/Hidable';
 // import Sound from 'react-sound';
 
 type Props = RouteComponentProps<{pin: string}>;

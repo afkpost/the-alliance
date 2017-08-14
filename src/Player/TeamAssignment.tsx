@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Dictionary from '../lib/Dictionary';
+import Dictionary from 'lib/Dictionary';
 import { SetPlayerOnTeam, ConfirmTeam } from './actions';
-import dispatcher from '../lib/dispatcher';
-import { Player, GamePhase } from '../types';
+import dispatcher from 'lib/dispatcher';
+import { Player, GamePhase } from 'types';
 import * as cx from 'classnames';
-import Hidable from '../controls/Hidable';
+import Hidable from 'controls/Hidable';
 
 type Props = {
     pin: string,

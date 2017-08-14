@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as Rx from 'rxjs';
-import gameStore from '../GameStore';
-import { Player, Game } from '../types';
+import gameStore from 'GameStore';
+import { Player, Game } from 'types';
 import { RouteComponentProps } from 'react-router';
 import './index.css';
 import WaitingForPlayersToJoin from './WaitingForPlayersToJoin';

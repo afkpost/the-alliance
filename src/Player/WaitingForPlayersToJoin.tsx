@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Player } from '../types';
-import dispatcher from '../lib/dispatcher';
+import { Player } from 'types';
+import dispatcher from 'lib/dispatcher';
 import { SetPlayerReadyState } from './actions';
 
 type Props = {

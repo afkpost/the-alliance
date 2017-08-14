@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Card from '../controls/Card';
+import Card from 'controls/Card';
 const shuffle: <T>(arr: T[]) => T[] = require('array-shuffle');
 
 type Props = {

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { GamePhase } from '../types';
+import { GamePhase } from 'types';
 import { Vote } from './actions';
-import dispatcher from '../lib/dispatcher';
-import Card from '../controls/Card';
-import Hidable from '../controls/Hidable';
+import dispatcher from 'lib/dispatcher';
+import Card from 'controls/Card';
+import Hidable from 'controls/Hidable';
 
 type Props = {
     pin: string,

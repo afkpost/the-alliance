@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Mission as Model } from '../types';
+import { Mission as Model } from 'types';
 import Mission from './Mission';
 
 type Props = {

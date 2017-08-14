@@ -1,15 +1,15 @@
 import * as React from 'react';
-import Dictionary from '../lib/Dictionary';
-import { Player, GamePhase } from '../types';
+import Dictionary from 'lib/Dictionary';
+import { Player, GamePhase } from 'types';
 import * as cx from 'classnames';
 import TeamAssignment from './TeamAssignment';
 import TeamVote from './TeamVote';
 import OnMission from './OnMission';
-import Card from '../controls/Card';
-import Continue from '../controls/Continue';
-import dispatcher from '../lib/dispatcher';
+import Card from 'controls/Card';
+import Continue from 'controls/Continue';
+import dispatcher from 'lib/dispatcher';
 import { Continue as ContinueAction } from './actions';
-import Hidable from '../controls/Hidable';
+import Hidable from 'controls/Hidable';
 
 type Props = {
     pin: string,

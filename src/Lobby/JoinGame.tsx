@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Lobby from './Lobby';
 import { Link } from 'react-router-dom';
-import dispatcher from '../lib/dispatcher';
+import dispatcher from 'lib/dispatcher';
 import { JoinGame } from './actions';
 
 type Props = {

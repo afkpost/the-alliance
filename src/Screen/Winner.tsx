@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { GamePhase } from '../types';
-import Hideable from '../controls/Hidable';
+import { GamePhase } from 'types';
+import Hideable from 'controls/Hidable';
 
 type Props = {
     phase: GamePhase

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import dispatcher from '../lib/dispatcher';
+import dispatcher from 'lib/dispatcher';
 import { MissionVote } from './actions';
-import { GamePhase } from '../types';
-import Card from '../controls/Card';
-import Hidable from '../controls/Hidable';
+import { GamePhase } from 'types';
+import Card from 'controls/Card';
+import Hidable from 'controls/Hidable';
 
 type SharedProps = {
     pin: string,

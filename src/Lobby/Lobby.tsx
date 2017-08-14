@@ -1,6 +1,6 @@
 import * as React from 'react';
 // import { NewGame } from './actions';
-// import dispatcher from '../lib/dispatcher';
+// import dispatcher from 'lib/dispatcher';
 import './index.css';
 
 // onClick={() => dispatcher.execute(new NewGame())}

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Mission } from '../types';
+import { Mission } from 'types';
 import * as cx from 'classnames';
 import './mission.css';
-import { asString } from '../lib/format';
+import { asString } from 'lib/format';
 
 type Props = {
     missionNumber: number,
