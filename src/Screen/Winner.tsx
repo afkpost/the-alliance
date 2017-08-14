@@ -9,6 +9,6 @@ type Props = {
 export default ({phase}: Props) => (
     <div>
         <Hideable hidden={phase !== 'SPIES_WIN'}>Spies won</Hideable>
-        <Hideable hidden={phase !== 'RESISTANCE_WINS'}>The resistance won</Hideable>
+        <Hideable hidden={phase !== 'ALLIANCE_WINS'}>The Alliance won</Hideable>
     </div>
 );

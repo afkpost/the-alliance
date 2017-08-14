@@ -55,7 +55,7 @@ export default class Screen extends React.Component<Props, State> {
             <div className="screen">
                 {/* <Sound url="/resources/sounds/background.mp3" playStatus={Sound.status.PLAYING}/> */}
                 <section>
-                    <h1>The Resistance</h1>
+                    <h1>The Alliance</h1>
                     <Hidable hidden={!game.state}>
                         <div>
                             <Missions 
@@ -92,11 +92,11 @@ export default class Screen extends React.Component<Props, State> {
                     hidden=
                         {
                             !game.state ||
-                            (game.state.phase !== 'SPIES_WIN' && game.state.phase !== 'RESISTANCE_WINS')
+                            (game.state.phase !== 'SPIES_WIN' && game.state.phase !== 'ALLIANCE_WINS')
                         }
                 >
                     <h1>
-                        {game.state && game.state.phase === 'SPIES_WIN' ? 'THE SPIES ' : 'THE RESISTANCE '}
+                        {game.state && game.state.phase === 'SPIES_WIN' ? 'THE SPIES ' : 'THE ALLIANCE '}
                         HAVE WON
                     </h1>
                 </Hidable>

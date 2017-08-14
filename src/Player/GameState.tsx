@@ -39,8 +39,8 @@ export default class extends React.Component<Props, State> {
         const { pin, spies, uid, players, leader, currentTeam, missionSize, phase, votes } = this.props;
         const { showTeam } = this.state;
         const isSpy = !!spies[uid];
-        const gameOver = phase === 'SPIES_WIN' || phase === 'RESISTANCE_WINS';
-        const won = phase === 'SPIES_WIN' && isSpy || phase === 'RESISTANCE_WINS' && !isSpy;
+        const gameOver = phase === 'SPIES_WIN' || phase === 'ALLIANCE_WINS';
+        const won = phase === 'SPIES_WIN' && isSpy || phase === 'ALLIANCE_WINS' && !isSpy;
         return (
             <section className="game-state">
                 <Card 
@@ -83,7 +83,7 @@ export default class extends React.Component<Props, State> {
                 </Hidable>
                 <div className={cx('team', {hidden: !showTeam})} onClick={() => this.setState({ showTeam: !showTeam})}>
                     <div className="toogle"/>
-                    <h2>You are a {isSpy ? ' SPY' : ' RESISTANCE MEMBER'}</h2>
+                    <h2>You are a {isSpy ? ' SPY' : ' ALLIANCE MEMBER'}</h2>
                     <Hidable className="team-members" hidden={!isSpy}>
                         <h3>Other spies</h3>
                         <ul>

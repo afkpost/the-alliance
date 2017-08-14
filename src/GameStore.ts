@@ -142,7 +142,7 @@ class GameStore {
 
                     if (missions.filter(x => x.failed === currentMission.failed).length >
                         missions.length / 2) {
-                        state.phase = currentMission.failed ? 'SPIES_WIN' : 'RESISTANCE_WINS';
+                        state.phase = currentMission.failed ? 'SPIES_WIN' : 'ALLIANCE_WINS';
                     } else {
                         state.currentTeam = [];
                         state.phase = 'TEAM_ASSIGNMENT';

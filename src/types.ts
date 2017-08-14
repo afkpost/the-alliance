@@ -19,7 +19,7 @@ export type GamePhase
     | 'ON_MISSION' 
     | 'MISSION_REPORT'
     | 'SPIES_WIN'
-    | 'RESISTANCE_WINS' ;
+    | 'ALLIANCE_WINS' ;
 
 export type GameState = {
     phase: GamePhase,
