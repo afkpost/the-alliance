@@ -18,7 +18,7 @@ type Props = SharedProps & {
 
 const Success = ({pin, uid}: SharedProps) => (
     <Card 
-        icon="success"
+        icon="alliance"
         orientation="horizontal"
         size="s"
         onClick={() => dispatcher.execute(new MissionVote(pin, uid, true))}
@@ -27,7 +27,7 @@ const Success = ({pin, uid}: SharedProps) => (
 
 const Fail = ({ pin, uid, disabled}: {disabled: boolean} & SharedProps) => (
     <Card 
-        icon="fail"
+        icon="spy"
         orientation="horizontal"
         size="s"
         disabled={disabled}
@@ -66,7 +66,7 @@ class Votes extends React.Component<{spy: boolean} & SharedProps, {reverse: bool
 export default ({pin, uid, phase, onMission, spy}: Props) => (
     <Hidable hidden={phase !== 'ON_MISSION'}>
         <Hidable hidden={onMission}>
-            <h1>Waiting for mission to complete</h1>
+            <img src="/resources/icons/spinner.svg"/>
         </Hidable>
         <Hidable hidden={!onMission}>
             <h2>Please choose</h2>

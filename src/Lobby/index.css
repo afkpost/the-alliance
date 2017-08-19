@@ -1,9 +1,8 @@
 .lobby {
     position: fixed;
-    background: rgba(0,0,0,0.8);
+    background: #c2d3e3;
     padding-top: 100px;
-    left: 0; right: 0; top: 0; bottom: 0;
-    color: white;
+    left: 0; right: 0; top: 0; bottom: 0;;
 }
 
 .lobby h1 {

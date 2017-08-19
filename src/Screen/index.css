@@ -8,81 +8,42 @@
   background-image: url('/resources/images/screen.jpg');
   background-size: cover;
   background-position: center;
-  color: white;
+}
+
+.screen h1 {
+    font-size: 4em;
+    font-weight: bolder;
+    text-shadow: 0 0 15px rgba(0,0,0,0.7);
 }
 
 .screen section {
     flex: 1;
-    padding: 10px 20px
+    padding: 5vh 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.screen section:first-child {
+    padding-left: 5vw;
+}
+
+.screen section:last-child {
+    padding-right: 5vw;
 }
 
 .screen aside {
     background: rgba(0,0,0,0.3);
+    color: white;
     min-width: 250px;
     position: relative;
+    padding-right: 5vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
 }
 
 .screen .missions {
-    display: inline-block;
     margin: 0 40px;
-}
-
-.screen .vote-track {
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-}
-
-.screen .vote-track>div {
-    margin: 40px;
-}
-
-.screen .vote {
-    position: relative;
     text-align: center;
-    border: 3px solid white;
-    height: 50px;
-    width: 50px;
-    border-radius: 100%;
-    display: inline-block;
-    margin: 0 10px;
-}
-
-.screen .vote>div {
-    font-size: 1.5em;
-    margin: auto;
-    position: absolute;
-    left: 0; right: 0; top: 0; bottom: 0;
-    line-height: 1em;
-    height: 1em;
-}
-
-.screen .vote:last-child {
-    border-color: hsl(350, 100%, 50%);
-    background: hsla(350, 100%, 50%, 0.5);
-}
-
-@keyframes border-pulsate-red {
-    0%   { 
-        border-color: hsl(350, 100%, 50%); 
-        box-shadow: 0px 0px 100px hsl(350, 100%, 50%);
-    }
-    50%  { 
-        border-color: hsl(350, 100%, 65%); 
-        box-shadow: 0px 0px 10px hsl(350, 100%, 50%);
-    }
-    100% { 
-        border-color: hsl(350, 100%, 50%); 
-        box-shadow: 0px 0px 100px hsl(350, 100%, 50%);
-    }
-}
-
-.screen .vote.current-vote:last-child {
-    animation: border-pulsate-red 2s infinite;
-}
-
-.screen .current-vote {
-    border-color: hsl(70, 100%, 75%); 
 }
 
 .screen .players {
@@ -108,8 +69,9 @@
     position: fixed;
     left: 0;
     top: 0;
-    padding: 10px 50px;
+    padding: 5vh 30px 10px 5vw;
     background: rgba(0,0,0,0.8);
+    color: white;
     font-size: 2em;
     border-bottom-right-radius: 50px;
     text-transform: uppercase;
