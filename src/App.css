@@ -41,7 +41,7 @@ button:disabled {
 
 input {
   display: block;
-  border: 1px solid hsl(70, 100%, 75%); 
+  border: 1px solid hsl(300, 50%, 50%); 
   padding: 10px 20px;
   margin: 10px auto;
   box-sizing: border-box;
