@@ -10,7 +10,7 @@ import setupMatrix from './setupMatrix';
 import * as firebaseConfiguration from './firebase.config.json';
 const shuffle: <T>(arr: T[]) => T[] = require('array-shuffle');
 
-const digits = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const digits = '123456789ABCDEFGHIJKLMNPQRSTUVWXYZ';
 function generatePin(): string {
     let res = '';
     for (let i = 0; i < 4; i++) {
