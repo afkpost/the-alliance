@@ -51,7 +51,7 @@ export default class MissionReport extends React.Component<Props, State> {
             {
                 effort.map((success, i) => (
                     <Card
-                        icon={success ? 'success' : 'fail'}
+                        icon={success ? 'alliance' : 'spy'}
                         orientation="horizontal"
                         flipped={i >= position}
                     />

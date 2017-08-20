@@ -56,14 +56,14 @@ export default class Screen extends React.Component<Props, State> {
                 {/* <Sound url="/resources/sounds/background.mp3" playStatus={Sound.status.PLAYING}/> */}
                 <section>
                     <h1>The Alliance</h1>
+                    <Hidable hidden={!game.state} className="flex">
+                        <Missions 
+                            missions={game.state && game.state.missions || []} 
+                            currentMission={game.state && game.state.currentMission || 0}
+                        />
+                    </Hidable>
                     <Hidable hidden={!game.state}>
-                        <div>
-                            <Missions 
-                                missions={game.state && game.state.missions || []} 
-                                currentMission={game.state && game.state.currentMission || 0}
-                            />
-                            <VoteTrack voteTrack={game.state && game.state.voteTrack || 0}/>
-                        </div>
+                        <VoteTrack voteTrack={game.state && game.state.voteTrack || 0}/>
                     </Hidable>
                 </section>
                 <aside>

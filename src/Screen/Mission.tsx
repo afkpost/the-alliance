@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Mission } from 'types';
 import * as cx from 'classnames';
 import './mission.css';
-import { asString } from 'lib/format';
+import Hidable from 'controls/Hidable';
+import Icon from 'controls/Icon';
 
 type Props = {
     missionNumber: number,
@@ -19,11 +20,18 @@ export default ({missionNumber, currentMission, mission}: Props) => (
                 succeed: mission.failed === false
             })}
     >
+        <Hidable hidden={mission.failed === undefined}>
+            <Icon 
+                icon={mission.failed ? 'spy' : 'alliance'} 
+                className="mission-result"
+            />
+        </Hidable>
         <div className="mission-number">{missionNumber}</div>
         <div className="mission-team-size">{mission.teamSize}</div>
-        { 
-            mission.failuresNeededToFail > 1 && 
-            <div className="mission-failures-needed">{asString(mission.failuresNeededToFail)}</div>
-        }
+        <Hidable hidden={mission.failuresNeededToFail < 2} className="failures-needed">
+            {
+                Array.apply(null, { length: mission.failuresNeededToFail})
+                    .map((x: {}, i: number) => <Icon icon="spy" key={i}/>)}
+        </Hidable>
     </div>
 );

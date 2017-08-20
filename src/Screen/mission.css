@@ -3,38 +3,64 @@
     display: inline-block;
     width: 90px;
     height: 90px;
-    border: 5px solid white;
+    border: 5px solid black;
     margin: 10px;
     text-align: center;
     padding: 10px;
-    border-radius: 100%;
 }
 
 @keyframes border-pulsate {
-    0%   { border-color: hsl(70, 100%, 75%); }
-    40%  { border-color: hsl(70, 100%, 95%); }
-    60%  { border-color: hsl(70, 100%, 95%); }
-    100% { border-color: hsl(70, 100%, 75%); }
+    0%   { border-color: hsl(300, 50%, 50%); }
+    50%   { border-color: hsl(300, 100%, 50%);; }
+    100% { border-color: hsl(300, 50%, 50%); }
 }
 
 .mission.current-mission {
     animation: border-pulsate 2s infinite;
 }
 
+.failures-needed {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.failures-needed svg {
+    width: 30px;
+    height: 30px;
+    padding: 10px 5px;
+}
+
 .mission.succeed {
     border-color: hsl(190, 100%, 50%);
-    background: hsla(190, 100%, 50%, 0.5);
-    color: rgba(255,255,255,0.3);
+    background: hsl(190, 20%, 90%);
+    color: transparent;
+}
+
+.mission.succeed .mission-result-svg {
+    fill:  hsl(190, 50%, 50%);
 }
 
 .mission.failed {
     border-color: hsl(350, 100%, 50%);
-    background: hsla(350, 100%, 50%, 0.5);
-    color: rgba(255,255,255,0.3);
+    background: hsl(350, 20%, 90%);
+    color: transparent;
+}
+
+.mission.failed .mission-result-svg {
+    fill:  hsl(350, 50%, 50%);
 }
 
 .mission-number {
     font-size: 0.8em;
+}
+
+.mission .mission-result-svg {
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
+    fill: white;
 }
 
 .mission-number:before {
@@ -48,15 +74,4 @@
     left: 0; right: 0; top: 0; bottom: 0;
     line-height: 1em;
     height: 1em;
-}
-
-.mission-failures-needed {
-    position: absolute;
-    font-size: 2em;
-    font-weight: bold;
-    left: 0; right: 0; top: 100%;
-    padding: 10px 0;
-}
-.mission-failures-needed:after {
-    content: ' fails needed';
 }

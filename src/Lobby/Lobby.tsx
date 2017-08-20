@@ -9,7 +9,7 @@ export default class Lobby extends React.Component {
     render() {
         return (
             <div className="lobby">
-                <h1>Welcome to "The Alliance"</h1>
+                <h1>Join "The Alliance"</h1>
                 {this.props.children}
             </div>
         );
