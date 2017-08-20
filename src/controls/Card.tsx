@@ -1,12 +1,12 @@
 import * as React from 'react';
-import SVGInline from 'react-svg-inline';
 import * as cx from 'classnames';
 import './card.css';
+import Icon from './Icon';
 
 type Props = {
     size?: 's' | 'l',
     orientation: 'vertical' | 'horizontal',
-    icon: 'approve' | 'reject' | 'fail' | 'success' | 'gun',
+    icon: 'alliance' | 'spy' | 'approve' | 'reject' |  'gun',
     color?: 'dark' | 'light',
     text?: string
     onClick?: () => void,
@@ -26,7 +26,7 @@ export default ({size, orientation, icon, color, text, hidden, onClick, disabled
             } 
         onClick={() => !disabled && onClick && onClick()}
     >
-        <SVGInline svg={require(`./icons/${icon}.svg`)} cleanup className="inner-card"/>
+        <Icon icon={icon} className="inner-card"/>
         {text}
     </div>
 );

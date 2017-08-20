@@ -8,7 +8,6 @@ import Dictionary from './lib/Dictionary';
 import { Game, Player, GameState, GamePhase } from './types';
 import setupMatrix from './setupMatrix';
 import * as firebaseConfiguration from './firebase.config.json';
-console.log(firebaseConfiguration);
 const shuffle: <T>(arr: T[]) => T[] = require('array-shuffle');
 
 const digits = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -62,7 +61,6 @@ class GameStore {
                 this.store.get<Dictionary<Player>>(`${pin}/players`).then((playersDictionary => {
                     const players = Dictionary.values(playersDictionary);
                     const numberOfPlayers = players.length;
-                    console.log(players, numberOfPlayers);
                     if (numberOfPlayers >= 5 &&
                         numberOfPlayers <= 10 && 
                         players.every(player => player.ready)) {

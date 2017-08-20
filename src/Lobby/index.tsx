@@ -6,7 +6,7 @@ import dispatcher from 'lib/dispatcher';
 
 export default () => (
     <Lobby>
-        <button onClick={() => dispatcher.execute(new NewGame())}>New game</button>
         <Link to="/join">Join game</Link>
+        <button onClick={() => dispatcher.execute(new NewGame())}>New game</button>
     </Lobby>
 );

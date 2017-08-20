@@ -70,7 +70,7 @@ export default class extends React.Component<Props, State> {
                     onMission={currentTeam.indexOf(uid) !== -1 && votes[uid] === undefined}
                     spy={!!spies[uid]}
                 />
-                <Hidable hidden={phase !== 'VOTE_COUNTING' && phase !== 'MISSION_REPORT'}>
+                <Hidable hidden={leader !== uid || (phase !== 'VOTE_COUNTING' && phase !== 'MISSION_REPORT')}>
                     <Continue onClick={() => dispatcher.execute(new ContinueAction(pin, phase))} lockedFor={5}>
                         Continue
                     </Continue>
