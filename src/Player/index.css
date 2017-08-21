@@ -5,7 +5,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: url('/resources/images/screen.jpg');
+    background: url('/resources/screen.jpg');
     background-position: center;
     background-size: cover;
     text-align: center;
@@ -21,18 +21,6 @@
     padding-bottom: 50px;
 }
 
-.player .on-team {
-    height: 16vh;
-    width: 30vh;
-    margin: auto;
-    background-color: hsl(190, 100%, 10%);
-    background-image: url("/resources/icons/gun.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border-radius: 2vh;
-}
-
 .player .team {
     position: absolute;
     text-align: center;
@@ -46,20 +34,16 @@
     cursor: pointer;
 }
 
-.player .team > .toogle:before {
+.player .team > .toogle svg {
     height: 50px;
-    content: '';
-    background: url('/resources/icons/up.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
     position: fixed;
     left: 0; right: 0; bottom: 100%;
+    margin: auto;
     transition: 300ms ease-in-out transform;
     transform: rotateZ(180deg);
 }
 
-.player .team.hidden > .toogle:before {
+.player .team.hidden > .toogle svg {
     transform: rotateZ(0deg);
 }
 

@@ -6,7 +6,9 @@ export type Icon
     | 'spy' 
     | 'approve' 
     | 'reject' 
-    |  'gun';
+    | 'gun'
+    | 'up'
+    | 'ready';
 
 type Props = {
     icon: Icon,

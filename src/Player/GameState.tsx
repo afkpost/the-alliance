@@ -10,6 +10,7 @@ import Continue from 'controls/Continue';
 import dispatcher from 'lib/dispatcher';
 import { Continue as ContinueAction } from './actions';
 import Hidable from 'controls/Hidable';
+import Icon from 'controls/Icon';
 
 type Props = {
     pin: string,
@@ -82,7 +83,7 @@ export default class extends React.Component<Props, State> {
                     <h1>You lose</h1>
                 </Hidable>
                 <div className={cx('team', {hidden: !showTeam})} onClick={() => this.setState({ showTeam: !showTeam})}>
-                    <div className="toogle"/>
+                    <Icon className="toogle" icon="up"/>
                     <h2>You are a {isSpy ? ' SPY' : ' ALLIANCE MEMBER'}</h2>
                     <Hidable className="team-members" hidden={!isSpy}>
                         <h3>Other spies</h3>
