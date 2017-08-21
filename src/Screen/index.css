@@ -5,7 +5,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-image: url('/resources/images/screen.jpg');
+  background-image: url('/resources/screen.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -51,20 +51,6 @@
     margin: 10px;
 }
 
-.screen .players tbody th.on-team:after {
-    content: '';
-    background: url('/resources/icons/gun.svg');
-    width: 2em;
-    height: 1em;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: inline-block;
-    background-color: hsl(190, 100%, 10%);
-    border-radius: 5px;
-    margin: 0 10px;
-}
-
 .screen .room-code {
     position: fixed;
     left: 0;
@@ -88,8 +74,9 @@
     position: fixed;
     top: 0%; left: 0; right: 0; bottom: 0;
     padding: 5%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.9);
     text-align: center;
+    color: white;
 }
 
 .screen .mission-effort {

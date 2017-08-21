@@ -1,50 +1,24 @@
-.card.horizontal {
-    width: 31.5vh;
-}
-
-.card.horizontal svg {
-    height: 18vh;
-}
-
-.card.horizontal.s {
-    width: 21vh;
-}
-.card.horizontal.s svg {
-    height: 12vh;
-}
-
-.card.horizontal.l {
-    width: 42vh;
-}
-.card.horizontal.l svg {
-    height: 24vh;
-}
-
-.card.vertical {
-    width: 24vh;
-    height: 42vh;
-}
-
-.card.vertical.s {
-    width: 18vh;
-    height: 31.5vh;
-}
-
 .card {
-    border-radius: 3vh;
-    display: inline-table;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    display: inline-block;
+    position: relative;
     margin: 2vh;
     transition: 0.5s ease transform;
     transform: perspective(100px);
+    text-align: center;
+    box-shadow: 0 4vh 4vh rgba(0,0,0,0.5);
 }
 
-.card.hidden {
-    display: none;
+.card.mini {
+    margin: 0;
+    box-shadow: none;
 }
 
+.card > .inner-card {
+    display: block;
+    line-height: 0;
+}
+
+/* card effects */
 .card.clickable {
     cursor: pointer;
 }
@@ -56,17 +30,88 @@
     opacity: 0.7;
 }
 
-.card.flipped {
-    transform: perspective(100px) translate3d(0, 100vh, 90px);
+.card.hidden {
+    transform: perspective(100px) translate3d(0, 100vh, 90px);    
 }
 
-.card .inner-card {
-    display: table-cell;
-    vertical-align: middle;
+.card.flipped svg{
+    visibility: hidden;
 }
 
+/* sizes */
+.card.mini {
+    border: 0.125vh solid;
+}
+.card.mini > .inner-card > svg {
+    width: 3vh; height: 3vh;
+}
+
+.card.s {
+    border: 0.5vh solid;    
+}
+.card.s > .inner-card > svg {
+    width: 12vh; height: 12vh;
+}
+
+.card {
+    border: 0.75vh solid;    
+}
+.card > .inner-card > svg {
+    width: 18vh; height: 18vh;
+}
+
+.card.l {
+    border: 1vh solid;    
+}
+.card.l > .inner-card > svg {
+    width: 24vh; height: 24vh;
+}
+
+/* orientation */
+.card.mini > .inner-card > svg {
+    padding: 0.5vh;
+}
+.card.mini.vertical > .inner-card > svg {
+    padding: 1.25vh 0.5vh;
+}
+.card.mini.horizontal > .inner-card > svg {
+    padding: 0.5vh 1.25vh;
+}
+
+.card.s > .inner-card > svg {
+    padding: 2vh;
+}
+.card.s.vertical > .inner-card > svg {
+    padding: 5vh 2vh;
+}
+.card.s.horizontal > .inner-card > svg {
+    padding: 2vh 5vh;
+}
+
+.card > .inner-card > svg {
+    padding: 3vh;
+}
+.card.vertical > .inner-card > svg {
+    padding: 7.5vh 3vh;
+}
+.card.horizontal > .inner-card > svg {
+    padding: 3vh 7.5vh;
+}
+
+.card.l > .inner-card > svg {
+    padding: 4vh;
+}
+.card.l.vertical > .inner-card > svg {
+    padding: 10vh 4vh;
+}
+.card..lhorizontal > .inner-card > svg {
+    padding: 4vh 10vh;
+}
+
+/* colors */
 .card.light {
-    background-color:  hsl(190, 10%, 70%);
+    background-color:  hsla(190, 10%, 70%, 0.9);
+    border-color: hsl(190, 100%, 10%)
 }
 
 .card.light svg {
@@ -74,7 +119,8 @@
 }
 
 .card.dark {
-    background-color: hsl(190, 100%, 10%);
+    background-color: hsla(190, 100%, 10%, 0.9);
+    border-color:  hsl(190, 10%, 70%);
 }
 
 .card.dark svg {

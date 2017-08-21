@@ -4,8 +4,8 @@ import './card.css';
 import Icon from './Icon';
 
 type Props = {
-    size?: 's' | 'l',
-    orientation: 'vertical' | 'horizontal',
+    size?: 's' | 'l' | 'mini',
+    orientation?: 'vertical' | 'horizontal',
     icon: 'alliance' | 'spy' | 'approve' | 'reject' |  'gun',
     color?: 'dark' | 'light',
     text?: string

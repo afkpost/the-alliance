@@ -66,7 +66,7 @@ class Votes extends React.Component<{spy: boolean} & SharedProps, {reverse: bool
 export default ({pin, uid, phase, onMission, spy}: Props) => (
     <Hidable hidden={phase !== 'ON_MISSION'}>
         <Hidable hidden={onMission}>
-            <img src="/resources/icons/spinner.svg"/>
+            <img src="/resources/spinner.svg"/>
         </Hidable>
         <Hidable hidden={!onMission}>
             <h2>Please choose</h2>

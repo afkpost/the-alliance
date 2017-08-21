@@ -53,7 +53,7 @@ export default class MissionReport extends React.Component<Props, State> {
                     <Card
                         icon={success ? 'alliance' : 'spy'}
                         orientation="horizontal"
-                        flipped={i >= position}
+                        hidden={i >= position}
                     />
                 ))
             }

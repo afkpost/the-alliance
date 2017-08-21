@@ -1,10 +1,8 @@
 .screen-player>td {
-    height: 1em;
+    height: 1.5em;
     width: 1em;
     box-sizing: border-box;
-    background-size: 1em;
-    background-repeat: no-repeat;
-    background-position: center;
+    vertical-align: middle;
 }
 
 .screen .players tbody th {
@@ -12,32 +10,14 @@
     padding: 0 10px;
 }
 
-.screen-player .ready {
-    background-image: url('/resources/icons/ready.svg');
-}
-.screen-player .leader {
-    background-image: url('/resources/icons/leader.svg');
-}
-
-.screen-player .on-team {
-    background-image: url('/resources/icons/gun.svg');
-    background-color:  hsl(190, 100%, 10%);
-    width: 2em;
-    border-radius: 0.2em;
+.screen-player svg {
+    fill: white;
 }
 
 .screen-player .player-vote {
     background-color: hsl(190, 100%, 10%);
     width: 2em;
     border-radius: 0.2em;
-}
-
-.screen-player .player-vote.accept {
-    background-image: url('/resources/icons/approve.svg');
-}
-
-.screen-player .player-vote.decline {
-    background-image: url('/resources/icons/reject.svg');
 }
 
 table.players {
