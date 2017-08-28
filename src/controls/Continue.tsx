@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { vibrate } from 'lib/vibration';
 
 type Props = {
     onClick: () => void;
@@ -37,6 +38,7 @@ export default class Continue extends React.Component<Props, State> {
                     clearInterval(this.timer as number);
                     this.setState({disabled: false});
                     this.timer = undefined;
+                    vibrate.long();
                 }
             }, 
             1000);
