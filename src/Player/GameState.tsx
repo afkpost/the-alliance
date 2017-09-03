@@ -8,7 +8,7 @@ import OnMission from './OnMission';
 import Card from 'controls/Card';
 import Continue from 'controls/Continue';
 import dispatcher from 'lib/dispatcher';
-import { Continue as ContinueAction } from './actions';
+import { Continue as ContinueAction, LeaveGame } from './actions';
 import Hidable from 'controls/Hidable';
 import Icon from 'controls/Icon';
 
@@ -44,6 +44,9 @@ export default class extends React.Component<Props, State> {
         const won = phase === 'SPIES_WIN' && isSpy || phase === 'ALLIANCE_WINS' && !isSpy;
         return (
             <section className="game-state">
+                <div className="leave-game" onClick={() => dispatcher.execute(new LeaveGame(pin, uid))}>
+                    <Icon icon="exit"/>
+                </div>
                 <Card 
                     hidden={currentTeam.indexOf(uid) === -1}
                     icon="gun"

@@ -8,6 +8,7 @@ import Dictionary from './lib/Dictionary';
 import { Game, Player, GameState, GamePhase } from './types';
 import setupMatrix from './setupMatrix';
 import * as firebaseConfiguration from './firebase.config.json';
+import { Observable } from 'rxjs';
 const shuffle: <T>(arr: T[]) => T[] = require('array-shuffle');
 
 const digits = '123456789ABCDEFGHIJKLMNPQRSTUVWXYZ';
@@ -162,6 +163,15 @@ class GameStore {
             });
         });
 
+        dispatcher.on(PlayerActions.LeaveGame, ({ pin, playerId }) => {
+            this.store.update<Game>(`${pin}`, game => {
+                if (!game.state && game.players) {
+                    delete game.players[playerId];
+                }
+            });
+            this.history.push('/');
+        });
+
         store.currentUser()
             .subscribe(user => {
                 if (!user) {
@@ -178,7 +188,7 @@ class GameStore {
 
     streamLoggedInPlayer(pin: string) {
         return this.store.currentUser()
-            .map(x => x ? this.store.stream<Player>(`${pin}/players/${x.uid}`) : Rx.Observable.empty<Player>())
+            .map(x => x ? this.store.stream<Player>(`${pin}/players/${x.uid}`) : Observable.empty<Player>())
             .switch();
     }
 

@@ -19,6 +19,8 @@ export default class Device extends React.Component<Props, State> {
         .map(x => x.toUpperCase())
         .distinctUntilChanged();
 
+    private subscriptions: Rx.Subscription[] = [];
+
     private playerStream = this.idStream
         .map(pin => gameStore.streamLoggedInPlayer(pin))
         .switch();
@@ -28,9 +30,8 @@ export default class Device extends React.Component<Props, State> {
         .switch();
 
     componentWillMount() {
-        this.playerStream.subscribe(player => this.setState({ player }));
-        this.stateStream
-            .subscribe(game => this.setState({ game }));
+        this.subscriptions.push(this.playerStream.subscribe(player => this.setState({ player })));
+        this.subscriptions.push(this.stateStream.subscribe(game => this.setState({ game })));
         this.componentWillReceiveProps(this.props);
     }
 
@@ -39,7 +40,8 @@ export default class Device extends React.Component<Props, State> {
     }
 
     componentWillUnmount() {
-        // TODO:
+        this.subscriptions.forEach(s => s.unsubscribe());
+        this.subscriptions = [];
     }
 
     render() {

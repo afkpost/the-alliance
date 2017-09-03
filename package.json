@@ -10,7 +10,6 @@
     "@types/react-dom": "^15.5.1",
     "@types/react-router": "^4.0.14",
     "@types/react-router-dom": "^4.0.7",
-    "@types/rx": "^4.1.1",
     "array-shuffle": "^1.0.1",
     "classnames": "^2.2.5",
     "firebase": "^4.1.3",
