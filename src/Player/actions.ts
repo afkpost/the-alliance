@@ -23,3 +23,7 @@ export class MissionVote {
 export class Continue {
     constructor(public pin: string, public currentPhase: GamePhase) {} 
 }
+
+export class LeaveGame {
+    constructor(public pin: string, public playerId: string) {}
+}

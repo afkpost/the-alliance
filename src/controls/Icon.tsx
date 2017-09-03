@@ -8,11 +8,12 @@ export type Icon
     | 'reject' 
     | 'gun'
     | 'up'
-    | 'ready';
+    | 'ready'
+    | 'exit';
 
 type Props = {
     icon: Icon,
-    className?: string
+    className?: string,
 };
 
 export default ({ icon, className}: Props) => (

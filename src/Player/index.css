@@ -98,17 +98,15 @@
     content: ' (me)';
 }
 
-section>header {
+section > header {
     position: fixed;
     text-align: center;
     background: rgba(0,0,0,0.2);
     border: 2px solid white;
-    padding: 5px 10px;
+    padding: 5px 40px;
     left: 0; right: 0; top: 0;
     margin: 10px auto;
-    width: 300px;
-    font-size: 2.5em;
-    font-weight: bold;
+    width: 180px;
 }
 
 section > footer {
@@ -118,6 +116,28 @@ section > footer {
     text-align: center;
     padding: 8px 0;
     margin-top: 50px;
+}
+
+.leave-game {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+section > .leave-game {
+    position: fixed;
+    margin: 0;
+}
+
+section > header > h2 {
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
 }
 
 section > div {
