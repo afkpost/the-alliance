@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import dispatcher from 'lib/dispatcher';
 import { JoinGame } from './actions';
 
-type Props = {
+const storeName = (name: string) => window.localStorage && localStorage.setItem('the-alliance:name', name);
+const getName = () => window.localStorage && localStorage.getItem('the-alliance:name') || '';
 
-};
+type Props = {};
 
 type State = {
     pin: string,
@@ -21,7 +22,7 @@ export default class extends React.Component<Props, State> {
     } = { name: null, pin: null, join: null};
 
     componentWillMount() {
-        this.setState({pin: ''});
+        this.setState({pin: '', name: getName()});
     }
 
     render() {
@@ -52,7 +53,10 @@ export default class extends React.Component<Props, State> {
         );
     }
 
-    private joinGame = () => dispatcher.execute(new JoinGame(this.state.pin, this.state.name));
+    private joinGame = () => {
+        storeName(this.state.name);
+        dispatcher.execute(new JoinGame(this.state.pin, this.state.name));
+    }
 
     private handle(e: React.KeyboardEvent<HTMLInputElement>, elm: HTMLElement | null, cb: (e: HTMLElement) => void) {
         if (e.key === 'Enter' && elm) {
