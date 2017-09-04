@@ -12,7 +12,7 @@ import './screen.css';
 import Dictionary from 'lib/Dictionary';
 import MissionReport from './MissionReport';
 import Hidable from 'controls/Hidable';
-// import Sound from 'react-sound';
+import Music from 'controls/Music';
 
 type Props = RouteComponentProps<{pin: string}>;
 type State = {
@@ -53,7 +53,9 @@ export default class Screen extends React.Component<Props, State> {
 
         return (
             <div className="screen">
-                {/* <Sound url="/resources/sounds/background.mp3" playStatus={Sound.status.PLAYING}/> */}
+                <Hidable hidden={!game.state || game.state.phase !== 'TEAM_VOTE'}>
+                    <Music file="background"/>
+                </Hidable>
                 <section>
                     <h1>The Alliance</h1>
                     <Hidable hidden={!game.state} className="flex">
