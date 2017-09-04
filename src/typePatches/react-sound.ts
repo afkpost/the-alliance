@@ -7,7 +7,7 @@ declare module 'react-sound' {
         volume?: number,
         autoLoad?: boolean,
         onLoading?: () => void,
-        onPlaying?: () => void,
+        onPlaying?: (obj: {position: number}) => void,
         onFinishedPlaying?: () => void
     };
     export default class extends React.Component<Props> { 
