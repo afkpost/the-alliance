@@ -44,9 +44,6 @@ export default class extends React.Component<Props, State> {
         const won = phase === 'SPIES_WIN' && isSpy || phase === 'ALLIANCE_WINS' && !isSpy;
         return (
             <section className="game-state">
-                <div className="leave-game" onClick={() => dispatcher.execute(new LeaveGame(pin, uid))}>
-                    <Icon icon="exit"/>
-                </div>
                 <Card 
                     hidden={currentTeam.indexOf(uid) === -1}
                     icon="gun"
@@ -97,6 +94,9 @@ export default class extends React.Component<Props, State> {
                         }
                         </ul>
                     </Hidable>
+                    <div className="leave-game" onClick={() => dispatcher.execute(new LeaveGame(pin, uid))}>
+                        <Icon icon="exit"/>
+                    </div>
                 </div>
             </section>
         );
