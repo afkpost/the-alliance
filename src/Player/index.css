@@ -103,10 +103,10 @@ section > header {
     text-align: center;
     background: rgba(0,0,0,0.2);
     border: 2px solid white;
-    padding: 5px 40px;
+    padding: 5px 20px;
     left: 0; right: 0; top: 0;
-    margin: 10px auto;
-    width: 180px;
+    margin: 30px auto;
+    width: 220px;
 }
 
 section > footer {
@@ -119,17 +119,16 @@ section > footer {
 }
 
 .leave-game {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     padding: 5px;
     position: absolute;
-    right: 0;
-    top: 0;
+    left: 0;
+    bottom: 0;
 }
 
-section > .leave-game {
-    position: fixed;
-    margin: 0;
+.leave-game svg {
+    fill: white;
 }
 
 section > header > h2 {
